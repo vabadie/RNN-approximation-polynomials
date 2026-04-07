@@ -472,7 +472,7 @@ def run_polynomial_approximation_experiment(
         ax_values.plot(x_plot, target_plot, "k--", linewidth=2, label="Target $f(x)$")
         ax_values.set_xlabel("x")
         ax_values.set_ylabel("Output")
-        ax_values.set_title("(a) RNN approximation of $f(x) = 1 +2x - 3x^2 + x^3$")
+        ax_values.set_title("(a) RNN approximation of random polynomial $f(x)$")
         ax_values.legend()
 
         ax_error.plot(t_axis, y_err, "o-", linewidth=2, label=f"Numerical error")
