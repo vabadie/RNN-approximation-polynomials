@@ -1,0 +1,12 @@
+name: polyrnn-numerics
+dependencies:
+  - python=3.11
+  - pip
+  - numpy
+  - pytest
+  - jupyterlab
+  - ipykernel
+  - matplotlib
+  - mpmath
+  - pip:
+      - -e .

@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "polyrnn-impl"
+version = "0.1.0"
+description = "NumPy reference implementation for RNNApproxPoly constructions"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy",
+]
+
+[project.optional-dependencies]
+notebook = [
+    "matplotlib",
+    "mpmath",
+    "numpy",
+]
+jupyter = [
+    "ipykernel",
+    "jupyterlab",
+]
+test = [
+    "pytest",
+]
+dev = [
+    "ipykernel",
+    "jupyterlab",
+    "matplotlib",
+    "mpmath",
+    "numpy",
+    "pytest",
+]
+
+[tool.setuptools]
+packages = ["polyrnn_impl"]
