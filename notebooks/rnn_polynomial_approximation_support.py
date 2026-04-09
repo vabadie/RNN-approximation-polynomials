@@ -311,7 +311,6 @@ def run_polynomial_approximation_experiment(
     x_max_poly: float = 1.0,
     T_poly: int = 100,
     t_values_poly: Any = None,
-    use_log2_err: bool = True,
     show_main_theorem_bound: bool = True,
     eps_plot: float | None = None,
 ) -> dict[str, Any]:
@@ -452,12 +451,8 @@ def run_polynomial_approximation_experiment(
 
     t_axis = np.arange(T_poly + 1)
     err_np = np.array(max_err, dtype=np.float64)
-    if use_log2_err:
-        y_err = np.log2(np.maximum(err_np, eps_plot))
-        y_label = "Sup error"
-    else:
-        y_err = err_np
-        y_label = "sup error"
+    y_label = "Sup error"
+    y_err = err_np
 
     bound = None
     bound_plot = None
@@ -479,15 +474,15 @@ def run_polynomial_approximation_experiment(
         if show_main_theorem_bound and N_poly >= 2:
             c1 = float(np.sum(np.abs(coeff_poly))) * 16.0 * N_poly * (D_poly ** (2 * N_poly))
             c2 = 1.0 / (4.0 * np.ceil(np.log2(N_poly)))
-            bound = c1 * (4.0 ** (-c2 * t_axis))
-            bound_plot = np.log2(np.maximum(bound, eps_plot)) if use_log2_err else bound
+            bound_plot = c1 * (4.0 ** (-c2 * t_axis))
             ax_error.plot(
                 t_axis[start_target_plot:],
                 bound_plot[start_target_plot:],
                 "--",
                 linewidth=2,
-                label="Theorem 3 bound: $\|a\|_1 C_1 4^{-C_2t}, t \geq 16 \log_2 N$",
+                label="Theorem 3 bound: $\|a\|_1 C_1 4^{-C_2t}, t \geq 16 \log (N)$",
             )
+        ax_error.set_yscale("log", base=2)
         ax_error.set_xlabel("Time step $t$")
         ax_error.set_ylabel(y_label)
         ax_error.set_title("(b) Error decay")
