@@ -510,7 +510,6 @@ def run_polynomial_approximation_experiment(
         "x_max_poly": x_max_poly,
         "T_poly": T_poly,
         "t_values_poly": t_values_poly,
-        "use_log2_err": use_log2_err,
         "show_main_theorem_bound": show_main_theorem_bound,
         "eps_plot": eps_plot,
         "start_target_plot": start_target_plot,
